@@ -9,9 +9,6 @@
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -40,14 +37,14 @@
     <header id="header" class="fixed-top header-transparent">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo mr-auto"><a href="index.html">Library E-card</a></h1>
+            <h1 class="logo mr-auto"><a href="index.php">Library E-card</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <!-- <a href="index.php" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="login.html">Login</a></li>
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="login.php">Login</a></li>
                 </ul>
             </nav>
             <!-- .nav-menu -->
@@ -61,7 +58,7 @@
         <div class="container position-relative">
             <h1>Selamat Datang</h1>
             <h2>memudahkan mahasiswa(i) dalam meminjam buku di perpustakaan</h2>
-            <a href="login.html" class="btn-get-started scrollto">Mulai</a>
+            <a href="login.php" class="btn-get-started scrollto">Mulai</a>
         </div>
     </section>
     <!-- End Hero -->
