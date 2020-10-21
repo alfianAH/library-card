@@ -21,11 +21,11 @@ if($result){
     $_SESSION['token'] = $token;
     $_SESSION['nim'] = $nim;
 
-    // Go to dashboarddosen.php
+    // Go to user
     header("Location: ../user/");
+} else{
+    // Login failed as mahasiswa
+    $_SESSION["notification"] = "Gagal login, coba lagi";
+    // Go back to login.php
+    header('Location: ../index.php');
 }
-
-// Login failed as mahasiswa
-$_SESSION["notification"] = "Gagal login, coba lagi";
-// Go back to login.php
-header('Location: ../login.php');
