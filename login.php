@@ -1,3 +1,33 @@
+<?php
+SESSION_START();
+include "database.php";
+
+$db = new Database();
+
+$nim = (isset($_SESSION['nim'])) ? $_SESSION['nim'] : "";
+$token = (isset($_SESSION['token'])) ? $_SESSION['token'] : "";
+
+if($token && $nim){
+    // Query mahasiswa
+    $result = $db->execute("SELECT * FROM mahasiswa_tbl WHERE nim = '".$nim."' AND token = '".$token."'");
+
+    // If dosen, ...
+    if($result){
+        // Redirect to dashboard dosen
+        header("Location: user/");
+    }
+}
+
+// Get notification
+$notification = (isset($_SESSION['notification'])) ? $_SESSION['notification'] : "";
+
+if($notification){
+    echo $notification;
+    unset($_SESSION['notification']);
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,19 +41,24 @@
 
 <body>
     <div class="cont">
+        <!-- Sign in -->
         <div class="form sign-in">
             <br><br>
             <h2>Login</h2>
-            <label>
-        <span>Nama</span>
-        <input type="nama" name="nama">
-      </label>
-            <label>
-        <span>Password</span>
-        <input type="password" name="password">
-      </label>
-            <button class="submit" type="button">Login</button>
 
+            <label>
+                <span>NIM</span>
+                <input type="text" name="nim" required>
+            </label>
+
+            <label>
+                <span>Password</span>
+                <input type="password" name="password" required>
+            </label>
+
+            <button class="submit">
+                <input type="submit" value="LOGIN">
+            </button>
         </div>
 
         <div class="sub-cont">
@@ -43,23 +78,40 @@
                     <span class="m-in">Login</span>
                 </div>
             </div>
-            
+
+            <!-- Sign up -->
             <div class="form sign-up" id="signup">
                 <div class="signup"></div>
                 <h2>Sign up</h2>
+
                 <label>
                     <span>Nama</span>
-                    <input type="text">
+                    <input type="text" name="nama" required>
                 </label>
+
                 <label>
                     <span>NIM</span>
-                    <input type="text">
+                    <input type="text" name="nim" required>
                 </label>
+
+                <label>
+                    <span>Prodi</span>
+                    <input type="text" name="prodi" required>
+                </label>
+
                 <label>
                     <span>Password</span>
-                    <input type="password">
+                    <input type="password" name="password" required>
                 </label>
-                <button type="button" class="submit" id="sign-up">Sign Up Now</button>
+
+                <label>
+                    <span>Confirm Password</span>
+                    <input type="password" name="password2" required>
+                </label>
+
+                <button class="submit" id="sign-up">
+                    <input type="submit" value="SIGN UP">
+                </button>
             </div>
         </div>
     </div>
