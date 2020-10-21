@@ -45,20 +45,21 @@ if($notification){
         <div class="form sign-in">
             <br><br>
             <h2>Login</h2>
+            <form action="login/login_process.php" method="post">
+                <label>
+                    <span>NIM</span>
+                    <input type="text" name="nim" required>
+                </label>
 
-            <label>
-                <span>NIM</span>
-                <input type="text" name="nim" required>
-            </label>
+                <label>
+                    <span>Password</span>
+                    <input type="password" name="password" required>
+                </label>
 
-            <label>
-                <span>Password</span>
-                <input type="password" name="password" required>
-            </label>
-
-            <button class="submit">
-                <input type="submit" value="LOGIN">
-            </button>
+                <button class="submit">
+                    <input type="submit" value="LOGIN">
+                </button>
+            </form>
         </div>
 
         <div class="sub-cont">
@@ -84,34 +85,36 @@ if($notification){
                 <div class="signup"></div>
                 <h2>Sign up</h2>
 
-                <label>
-                    <span>Nama</span>
-                    <input type="text" name="nama" required>
-                </label>
+                <form action="login/register_process.php" method="post">
+                    <label>
+                        <span>Nama</span>
+                        <input type="text" name="nama" required>
+                    </label>
 
-                <label>
-                    <span>NIM</span>
-                    <input type="text" name="nim" required>
-                </label>
+                    <label>
+                        <span>NIM</span>
+                        <input type="text" name="nim" required>
+                    </label>
 
-                <label>
-                    <span>Prodi</span>
-                    <input type="text" name="prodi" required>
-                </label>
+                    <label>
+                        <span>Prodi</span>
+                        <input type="text" name="prodi" required>
+                    </label>
 
-                <label>
-                    <span>Password</span>
-                    <input type="password" name="password" required>
-                </label>
+                    <label>
+                        <span>Password</span>
+                        <input type="password" name="password" required>
+                    </label>
 
-                <label>
-                    <span>Confirm Password</span>
-                    <input type="password" name="password2" required>
-                </label>
+                    <label>
+                        <span>Confirm Password</span>
+                        <input type="password" name="password2" required>
+                    </label>
 
-                <button class="submit" id="sign-up">
-                    <input type="submit" value="SIGN UP">
-                </button>
+                    <button class="submit" id="sign-up">
+                        <input type="submit" value="SIGN UP">
+                    </button>
+                </form>
             </div>
         </div>
     </div>
