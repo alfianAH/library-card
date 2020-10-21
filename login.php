@@ -87,8 +87,8 @@ if($notification){
 
                 <form action="login/register_process.php" method="post">
                     <label>
-                        <span>Nama</span>
-                        <input type="text" name="nama" required>
+                        <span>Nama Lengkap</span>
+                        <input type="text" name="nama_lengkap" required>
                     </label>
 
                     <label>
