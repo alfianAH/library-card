@@ -43,7 +43,7 @@
       -->
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="javascript:void(0)" class="simple-text logo-mini">
+                <a href="jindex.php" class="simple-text logo-mini">
                 </a>
                 <a href="index.php" class="simple-text logo-normal">
                     DASHBOARD
