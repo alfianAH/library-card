@@ -3057,7 +3057,7 @@
    * is right.<br />
    * Vertically (`left` and `right`), `start` is top and `end` is bottom.
    *
-   * Some valid examples are:
+   * Some valid user are:
    * - `top-end` (on top of reference, right aligned)
    * - `right-start` (on right of reference, top aligned)
    * - `bottom` (on bottom, centered)
@@ -3627,7 +3627,7 @@
      * Additionally, it accepts additions and subtractions between different units.
      * Note that multiplications and divisions aren't supported.
      *
-     * Valid examples are:
+     * Valid user are:
      * ```
      * 10
      * '10%'
