@@ -51,15 +51,21 @@
       </div>
       <ul class="nav">
         <li class="active ">
-          <a href="./user.html">
+          <a href="./user.php">
             <i class="tim-icons icon-single-02"></i>
             <p>User Profile</p>
           </a>
         </li>
         <li>
-          <a href="./tables.html">
+          <a href="./tables.php">
             <i class="tim-icons icon-puzzle-10"></i>
-            <p>Books List</p>
+            <p>List Buku User</p>
+          </a>
+        </li>
+        <li>
+          <a href="./tables2.php">
+            <i class="tim-icons icon-puzzle-10"></i>
+            <p>List Buku Perpus</p>
           </a>
         </li>
       </ul>
@@ -113,7 +119,7 @@
           <div class="col-md-12">
             <div class="card ">
               <div class="card-header">
-                <h4 class="card-title">Books List</h4>
+                <h4 class="card-title">List Buku Perpus</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
