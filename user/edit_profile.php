@@ -1,3 +1,40 @@
+<?php
+SESSION_START();
+include "../database.php";
+
+$db = new Database();
+
+$nim = (isset($_SESSION['nim'])) ? $_SESSION['nim'] : "";
+$token = (isset($_SESSION['token'])) ? $_SESSION['token'] : "";
+
+if($token && $nim) {
+    // Query mahasiswa
+    $result = $db->execute("SELECT * FROM mahasiswa_tbl 
+WHERE nim = '" . $nim . "' AND token = '" . $token . "'");
+
+    // If not mahasiswa, ...
+    if (!$result) {
+        // Redirect to login
+        header("Location: ../login.php");
+    }
+
+    $userdata = $db->get("SELECT *
+    FROM mahasiswa_tbl
+    WHERE mahasiswa_tbl.nim = '".$nim."'");
+
+    $userdata = mysqli_fetch_assoc($userdata);
+} else{
+    header("Location: ../login.php");
+}
+
+$notification = (isset($_SESSION['notification'])) ? $_SESSION['notification'] : "";
+
+if($notification){
+    echo $notification;
+    unset($_SESSION['notification']);
+}
+?>
+
 <!--
 =========================================================
 * * Black Dashboard - v1.0.1
@@ -97,7 +134,9 @@
                         <li class="dropdown nav-item">
                             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"></a>
                             <div >
-                                <button type="submit" class="btn btn-fill btn-primary">Logout</button>
+                                <a href="logout.php">
+                                    <button type="submit" class="btn btn-fill btn-primary">Logout</button>
+                                </a>
                             </div>
                             </a>
                         </li>
@@ -131,7 +170,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Nama Lengkap</label>
-                                            <input type="text" class="form-control" placeholder="Nama Lengkap" value="Mike Andrew">
+                                            <input type="text" class="form-control" placeholder="Nama Lengkap" value="<?php echo $userdata['nama_lengkap']?>">
                                         </div>
                                     </div>
                                 </div>
@@ -139,13 +178,13 @@
                                     <div class="col-md-6 pr-md-1">
                                         <div class="form-group">
                                             <label>NIM</label>
-                                            <input type="text" class="form-control" placeholder="NIM" value="D12110098">
+                                            <input type="text" class="form-control" placeholder="NIM" value="<?php echo $userdata['nim']?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6 pl-md-1">
                                         <div class="form-group">
                                             <label>Prodi</label>
-                                            <input type="text" class="form-control" placeholder="Prodi" value="Teknik Informatika">
+                                            <input type="text" class="form-control" placeholder="Prodi" value="<?php echo $userdata['prodi']?>">
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +192,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Password</label>
-                                            <input type="text" class="form-control" placeholder="Password" value="">
+                                            <input type="password" class="form-control" placeholder="Password" value="<?php echo $userdata['password']?>">
                                         </div>
                                     </div>
                                 </div>
@@ -175,10 +214,13 @@
                                     <div class="block block-four"></div>
                                     <a href="javascript:void(0)">
                                         <img class="avatar" src="../assets/img/profil.jpg" alt="...">
-                                        <h5 class="title">Mike Andrew</h5>
+                                        <h5 class="title"><?php echo $userdata['nama_lengkap']?></h5>
                                     </a>
                             <p class="description">
-                                D12110098
+                                <?php echo $userdata['nim']?>
+                            </p>
+                            <p class="prodi">
+                                <?php echo $userdata['prodi']?>
                             </p>
                         </div>
                         </p>

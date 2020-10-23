@@ -97,7 +97,9 @@
                         <li class="dropdown nav-item">
                             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"></a>
                             <div >
-                                <button type="submit" class="btn btn-fill btn-primary">Logout</button>
+                                <a href="logout.php">
+                                    <button type="submit" class="btn btn-fill btn-primary">Logout</button>
+                                </a>
                             </div>
                             </a>
                         </li>
