@@ -193,9 +193,9 @@ if($notification){
                                                 <td class="text-center"><?php echo $row['isbn']?></td>
 
                                                 <td>
-                                                    <form action="tes.php" method="post">
+                                                    <form action="book/add_book.php" method="post">
                                                         <input type="hidden" name="isbn" value="<?=$row['isbn']?>">
-                                                        <button type="submit" class="btn btn-primary">
+                                                        <button type="submit" class="btn btn-success">
                                                             <i class="fas fa-plus"></i>
                                                         </button>
                                                     </form>

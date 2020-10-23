@@ -1,3 +1,46 @@
+<?php
+SESSION_START();
+include "../database.php";
+
+$db = new Database();
+
+$nim = (isset($_SESSION['nim'])) ? $_SESSION['nim'] : "";
+$token = (isset($_SESSION['token'])) ? $_SESSION['token'] : "";
+
+if($token && $nim) {
+    // Query mahasiswa
+    $result = $db->execute("SELECT * FROM mahasiswa_tbl 
+WHERE nim = '" . $nim . "' AND token = '" . $token . "'");
+
+    // If not mahasiswa, ...
+    if (!$result) {
+        // Redirect to login
+        header("Location: ../login.php");
+    }
+
+    $bookuser = $db->get("SELECT peminjaman_tbl.isbn as isbn,
+peminjaman_tbl.waktu_peminjaman as waktu_peminjaman,
+peminjaman_tbl.waktu_pengembalian as waktu_pengembalian,
+peminjaman_tbl.denda as denda,
+buku_tbl.nama_buku as nama_buku,
+buku_tbl.nama_penulis as nama_penulis
+FROM buku_tbl, peminjaman_tbl
+WHERE peminjaman_tbl.nim = '".$nim."' AND
+peminjaman_tbl.isbn = buku_tbl.isbn");
+
+} else{
+    header("Location: ../login.php");
+}
+
+$notification = (isset($_SESSION['notification'])) ? $_SESSION['notification'] : "";
+
+if($notification){
+    echo $notification;
+    unset($_SESSION['notification']);
+}
+
+?>
+
 <!--
 =========================================================
 * * Black Dashboard - v1.0.1
@@ -141,7 +184,10 @@
                                             ISBN
                                         </th>
                                         <th class="text-center">
-                                            Batas Pengembalian Buku
+                                            Waktu Peminjaman
+                                        </th>
+                                        <th class="text-center">
+                                            Waktu Pengembalian
                                         </th>
                                         <th class="text-center">
                                             Denda
@@ -152,26 +198,39 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <!--                    TABLE-->
-                                    <tr>
-                                        <td>
-                                            Dakota Rice
-                                        </td>
-                                        <td>
-                                            Niger
-                                        </td>
-                                        <td class="text-center">
-                                            $36,738
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-warning">
-                                                <i class="fas fa-minus"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <!--TABLE-->
 
+                                    <?php
+                                    if($bookuser){
+                                        while ($row = mysqli_fetch_assoc($bookuser)){
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row['nama_buku']?></td>
+
+                                                <td><?php echo $row['nama_penulis']?></td>
+
+                                                <td class="text-center"><?php echo $row['isbn']?></td>
+
+                                                <td><?php echo $row['waktu_peminjaman']?></td>
+
+                                                <td><?php echo $row['waktu_pengembalian']?></td>
+
+                                                <td>Rp.<?php echo $row['denda']?></td>
+
+                                                <td>
+                                                    <form action="" method="post">
+                                                        <input type="hidden" name="isbn" value="<?=$row['isbn']?>">
+                                                        <button type="submit" class="btn btn-warning">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
