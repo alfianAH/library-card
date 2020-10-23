@@ -33,6 +33,7 @@
     <link href="../assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/css/bootstrap.css">
 </head>
 
 <body class="">
@@ -138,6 +139,9 @@
                                         <th class="text-center">
                                             ISBN
                                         </th>
+                                        <th class="text-center">
+                                            Action
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -151,6 +155,11 @@
                                         </td>
                                         <td class="text-center">
                                             $36,738
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-primary">
+                                                <i class="fas fa-plus"></i>
+                                            </a>
                                         </td>
                                     </tr>
 

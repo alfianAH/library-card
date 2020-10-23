@@ -138,6 +138,15 @@
                                         <th class="text-center">
                                             ISBN
                                         </th>
+                                        <th class="text-center">
+                                            Batas Pengembalian Buku
+                                        </th>
+                                        <th class="text-center">
+                                            Denda
+                                        </th>
+                                        <th class="text-center">
+                                            Action
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -151,6 +160,13 @@
                                         </td>
                                         <td class="text-center">
                                             $36,738
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-warning">
+                                                <i class="fas fa-minus"></i>
+                                            </a>
                                         </td>
                                     </tr>
 
