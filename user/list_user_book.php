@@ -218,7 +218,7 @@ if($notification){
                                                 <td>Rp.<?php echo $row['denda']?></td>
 
                                                 <td>
-                                                    <form action="" method="post">
+                                                    <form action="book/minus_book.php" method="post">
                                                         <input type="hidden" name="isbn" value="<?=$row['isbn']?>">
                                                         <button type="submit" class="btn btn-warning">
                                                             <i class="fas fa-minus"></i>
