@@ -11,9 +11,9 @@ if($token && $nim){
     // Query mahasiswa
     $result = $db->execute("SELECT * FROM mahasiswa_tbl WHERE nim = '".$nim."' AND token = '".$token."'");
 
-    // If dosen, ...
+    // If mahasiswa, ...
     if($result){
-        // Redirect to dashboard dosen
+        // Redirect to dashboard mahasiswa
         header("Location: user/");
     }
 }

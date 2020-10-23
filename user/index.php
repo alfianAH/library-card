@@ -1,4 +1,40 @@
 <?php
+SESSION_START();
+include "../database.php";
+
+$db = new Database();
+
+$nim = (isset($_SESSION['nim'])) ? $_SESSION['nim'] : "";
+$token = (isset($_SESSION['token'])) ? $_SESSION['token'] : "";
+
+if($token && $nim) {
+    // Query mahasiswa
+    $result = $db->execute("SELECT * FROM mahasiswa_tbl 
+WHERE nim = '" . $nim . "' AND token = '" . $token . "'");
+
+    // If not mahasiswa, ...
+    if (!$result) {
+        // Redirect to login
+        header("Location: ../login.php");
+    }
+
+    $userdata = $db->get("SELECT mahasiswa_tbl.nim as nim,
+    mahasiswa_tbl.nama_lengkap as nama_lengkap, 
+    mahasiswa_tbl.prodi as prodi
+    FROM mahasiswa_tbl
+    WHERE mahasiswa_tbl.nim = '".$nim."'");
+
+    $userdata = mysqli_fetch_assoc($userdata);
+} else{
+    header("Location: ../login.php");
+}
+
+$notification = (isset($_SESSION['notification'])) ? $_SESSION['notification'] : "";
+
+if($notification){
+    echo $notification;
+    unset($_SESSION['notification']);
+}
 ?>
 
 <!--
@@ -100,7 +136,9 @@
                         <li class="dropdown nav-item">
                             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"></a>
                             <div >
-                                <button type="submit" class="btn btn-fill btn-primary">Logout</button>
+                                <a href="logout.php">
+                                    <button type="submit" class="btn btn-fill btn-primary">Logout</button>
+                                </a>
                             </div>
                             </a>
                         </li>
@@ -135,13 +173,13 @@
                                     <div class="block block-four"></div>
                                     <a href="javascript:void(0)">
                                         <img class="avatar" src="../assets/img/profil.jpg" alt="...">
-                                        <h5 class="title">Mike Andrew</h5>
+                                        <h5 class="title"><?php echo $userdata['nama_lengkap']?></h5>
                                     </a>
                             <p class="nim">
-                                D12110098
+                                <?php echo $userdata['nim']?>
                             </p>
                             <p class="prodi">
-                                Teknik Informatika
+                                <?php echo $userdata['prodi']?>
                             </p>
                         </div>
                         </p>
