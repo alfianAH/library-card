@@ -1,3 +1,36 @@
+<?php
+SESSION_START();
+include "../database.php";
+
+$db = new Database();
+
+$nim = (isset($_SESSION['nim'])) ? $_SESSION['nim'] : "";
+$token = (isset($_SESSION['token'])) ? $_SESSION['token'] : "";
+
+if($token && $nim) {
+    // Query mahasiswa
+    $result = $db->execute("SELECT * FROM mahasiswa_tbl 
+WHERE nim = '" . $nim . "' AND token = '" . $token . "'");
+
+    // If not mahasiswa, ...
+    if (!$result) {
+        // Redirect to login
+        header("Location: ../login.php");
+    }
+
+    $bookdata = $db->get("SELECT * FROM buku_tbl");
+} else{
+    header("Location: ../login.php");
+}
+
+$notification = (isset($_SESSION['notification'])) ? $_SESSION['notification'] : "";
+
+if($notification){
+    echo $notification;
+    unset($_SESSION['notification']);
+}
+?>
+
 <!--
 =========================================================
 * * Black Dashboard - v1.0.1
@@ -133,10 +166,10 @@
                                     <thead class=" text-primary">
                                     <tr>
                                         <th>
-                                            Judul
+                                            Nama Buku
                                         </th>
                                         <th>
-                                            Penulis
+                                            Nama Penulis
                                         </th>
                                         <th class="text-center">
                                             ISBN
@@ -147,24 +180,32 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <!--                    TABLE-->
-                                    <tr>
-                                        <td>
-                                            Dakota Rice
-                                        </td>
-                                        <td>
-                                            Niger
-                                        </td>
-                                        <td class="text-center">
-                                            $36,738
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-primary">
-                                                <i class="fas fa-plus"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <!--TABLE-->
+                                    <?php
+                                    if($bookdata){
+                                        while ($row = mysqli_fetch_assoc($bookdata)){
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $row['nama_buku']?></td>
 
+                                                <td><?php echo $row['nama_penulis']?></td>
+
+                                                <td class="text-center"><?php echo $row['isbn']?></td>
+
+                                                <td>
+                                                    <form action="tes.php" method="post">
+                                                        <input type="hidden" name="isbn" value="<?=$row['isbn']?>">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="fas fa-plus"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+
+                                            </tr>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
