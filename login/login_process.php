@@ -28,5 +28,5 @@ if($result){
     // Login failed as mahasiswa
     $_SESSION["notification"] = "Gagal login, coba lagi";
     // Go back to login.php
-    header('Location: ../index.php');
+    header('Location: ../login.php');
 }
