@@ -29,5 +29,5 @@ VALUES('" . $nim . "', '" . $nama_lengkap . "', '" .  $prodi . "', '" . $passwor
         }
     }
 }
-$_SESSION['notification'] = "Password tidak sama";
+
 header("Location: ../login.php");
