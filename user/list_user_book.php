@@ -217,7 +217,7 @@ if($notification){
                                                 $diff = abs($current_date - $deadline);
                                                 $days = floor($diff/ (60*60*24));
 
-                                                $denda = $days * 10000;
+                                                $denda = $days * 500;
 
                                                 $update_denda = $db->execute("UPDATE peminjaman_tbl
                                                 SET denda = ".$denda." 
