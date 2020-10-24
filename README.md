@@ -14,7 +14,7 @@ Library card features are:
 4. Type ```git clone https://github.com/alfianAH/library-card.git```
 5. And finally it will be cloned to your computer.
 6. Start Apache and MySQL in XAMPP
-7. Make a new database in [localhost/phpmyadmin](localhost/phpmyadmin) with the name `library_card`
+7. Make a new database in `localhost/phpmyadmin` with the name `library_card`
 8. Import [library_card.sql](library_card.sql) in the database.
 9. If you have any configuration in database, go to [database_connect.php](database_connect.php). If you don't have any, skip this step.
 10. Done.
