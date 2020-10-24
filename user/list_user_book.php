@@ -246,7 +246,6 @@ if($notification){
                                                         <button type="submit" class="btn btn-warning">
                                                             <i class="fas fa-minus"></i>
                                                         </button>
-                                                    </form>
                                                 </td>
 
                                             </tr>
@@ -256,6 +255,16 @@ if($notification){
                                     ?>
                                     </tbody>
                                 </table>
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Librarian Password</label>
+                                                <input type="password" class="form-control" name="lib_password" placeholder="Password" value="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
