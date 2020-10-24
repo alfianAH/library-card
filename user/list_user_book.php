@@ -222,6 +222,8 @@ if($notification){
                                                 $update_denda = $db->execute("UPDATE peminjaman_tbl
                                                 SET denda = ".$denda." 
                                                 WHERE isbn = ".$row['isbn']);
+                                            } else{
+                                                $denda = 0;
                                             }
 
                                             ?>
