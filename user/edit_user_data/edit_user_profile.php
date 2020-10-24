@@ -32,6 +32,7 @@ WHERE nim = '" . $nim . "' AND token = '" . $token . "'");
 
         if($update_data){
             $_SESSION['notification'] = "Update berhasil<br>";
+            $_SESSION['nim'] = $nim;
             header("Location: ../edit_profile.php");
         } else{
             $_SESSION['notification'] = "Update gagal<br>";
