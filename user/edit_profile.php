@@ -165,41 +165,79 @@ if($notification){
                             <h5 class="title">Edit Profil</h5>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="edit_user_data/edit_user_profile.php" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Nama Lengkap</label>
-                                            <input type="text" class="form-control" placeholder="Nama Lengkap" value="<?php echo $userdata['nama_lengkap']?>">
+                                            <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" value="<?php echo $userdata['nama_lengkap']?>" required>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6 pr-md-1">
                                         <div class="form-group">
                                             <label>NIM</label>
-                                            <input type="text" class="form-control" placeholder="NIM" value="<?php echo $userdata['nim']?>">
+                                            <input type="text" class="form-control" name="nim" placeholder="NIM" value="<?php echo $userdata['nim']?>" required>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6 pl-md-1">
                                         <div class="form-group">
                                             <label>Prodi</label>
-                                            <input type="text" class="form-control" placeholder="Prodi" value="<?php echo $userdata['prodi']?>">
+                                            <input type="text" class="form-control" name="prodi" placeholder="Prodi" value="<?php echo $userdata['prodi']?>" required>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" class="form-control" placeholder="Password" value="<?php echo $userdata['password']?>">
-                                        </div>
-                                    </div>
+
+                                <div class="card-footer">
+                                    <input type="hidden" class="form-control" name="old_nim" value="<?php echo $userdata['nim']?>">
+                                    <button type="submit" class="btn btn-fill btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="title">Change Password</h5>
+                        </div>
+
+                        <div class="card-body">
+                            <form action="edit_user_data/edit_user_password.php" method="post">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Old Password</label>
+                                            <input type="password" class="form-control" name="old_password" placeholder="Old Password" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input type="password" class="form-control" name="new_password" placeholder="New Password" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Confirm New Password</label>
+                                            <input type="password" class="form-control" name="new_password2" placeholder="Confirm New Password" value="" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <input type="hidden" class="form-control" name="nim" value="<?php echo $userdata['nim']?>">
+                                    <button type="submit" class="btn btn-fill btn-primary">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
