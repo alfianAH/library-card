@@ -28,6 +28,8 @@ FROM buku_tbl, peminjaman_tbl
 WHERE peminjaman_tbl.nim = '".$nim."' AND
 peminjaman_tbl.isbn = buku_tbl.isbn");
 
+
+
 } else{
     header("Location: ../login.php");
 }
@@ -203,6 +205,25 @@ if($notification){
                                     <?php
                                     if($bookuser){
                                         while ($row = mysqli_fetch_assoc($bookuser)){
+                                            $current_date = date("Y-m-d");
+                                            $deadline = $row['waktu_pengembalian'];
+
+                                            $current_date = strtotime($current_date);
+                                            $deadline = strtotime($deadline);
+
+                                            // If current date > deadline
+                                            if($current_date > $deadline){
+                                                // calculate difference
+                                                $diff = abs($current_date - $deadline);
+                                                $days = floor($diff/ (60*60*24));
+
+                                                $denda = $days * 10000;
+
+                                                $update_denda = $db->execute("UPDATE peminjaman_tbl
+                                                SET denda = ".$denda." 
+                                                WHERE isbn = ".$row['isbn']);
+                                            }
+
                                             ?>
                                             <tr>
                                                 <td><?php echo $row['nama_buku']?></td>
@@ -215,7 +236,7 @@ if($notification){
 
                                                 <td><?php echo $row['waktu_pengembalian']?></td>
 
-                                                <td>Rp.<?php echo $row['denda']?></td>
+                                                <td>Rp.<?php echo $denda?></td>
 
                                                 <td>
                                                     <form action="book/minus_book.php" method="post">
