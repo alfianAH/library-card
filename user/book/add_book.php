@@ -23,13 +23,20 @@ WHERE nim = '" . $nim . "' AND token = '" . $token . "'");
     }
 
     if (isset($isbn)) {
-        $bookuser = $db->get("SELECT peminjaman_tbl.isbn as isbn
+        // execute first
+        $bookuser = $db->execute("SELECT peminjaman_tbl.isbn as isbn
 FROM buku_tbl, peminjaman_tbl
 WHERE peminjaman_tbl.nim = '" . $nim . "' AND
 peminjaman_tbl.isbn = buku_tbl.isbn");
 
         if($bookuser) {
             $i = 0;
+
+            // get then
+            $bookuser = $db->get("SELECT peminjaman_tbl.isbn as isbn
+FROM buku_tbl, peminjaman_tbl
+WHERE peminjaman_tbl.nim = '" . $nim . "' AND
+peminjaman_tbl.isbn = buku_tbl.isbn");
 
             // Check user's books
             while ($row = mysqli_fetch_assoc($bookuser)) {
