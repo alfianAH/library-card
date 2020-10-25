@@ -61,7 +61,7 @@ VALUES('" . $nim . "', " . $isbn . ", CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), I
                     $_SESSION['notification'] = "Buku berhasil ditambahkan.";
                     header("Location: ../list_user_book.php");
                 }
-            } else if($i > 3){
+            } else if($i >= 3){
                 $_SESSION['notification'] = "Batas peminjaman buku adalah 3 buku.";
                 header("Location: ../list_library_book.php");
             }
