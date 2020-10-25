@@ -210,7 +210,7 @@ if($notification){
 
                                             $current_date = strtotime($current_date);
                                             $deadline = strtotime($deadline);
-
+                                            $denda = 0;
                                             // If current date > deadline
                                             if($current_date > $deadline){
                                                 // calculate difference
@@ -222,8 +222,6 @@ if($notification){
                                                 $update_denda = $db->execute("UPDATE peminjaman_tbl
                                                 SET denda = ".$denda." 
                                                 WHERE isbn = ".$row['isbn']);
-                                            } else{
-                                                $denda = 0;
                                             }
 
                                             ?>

@@ -54,7 +54,7 @@ peminjaman_tbl.isbn = buku_tbl.isbn");
 
             if ($i < 3 && !$is_book_same) {
                 $result = $db->execute("INSERT INTO peminjaman_tbl(nim, isbn, waktu_peminjaman, waktu_pengembalian, denda) 
-VALUES('" . $nim . "', " . $isbn . ", CURRENT_DATE(), CURRENT_DATE() + 7, 0)");
+VALUES('" . $nim . "', " . $isbn . ", CURRENT_DATE(), DATE_ADD(CURRENT_DATE(), INTERVAL 7 DAY), 0)");
 
                 if($result) {
                     echo "jalan";
